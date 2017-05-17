@@ -11,6 +11,7 @@
 		6F0754721ECBB12300E0E054 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754711ECBB12300E0E054 /* UIViewControllerExtension.swift */; };
 		6F0754751ECBB2CC00E0E054 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754741ECBB2CC00E0E054 /* PostTableViewCell.swift */; };
 		6F19B03D1ECB96E800E6E200 /* PostsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19B03C1ECB96E800E6E200 /* PostsService.swift */; };
+		6F4FC89D1ECCEA2D006E2E07 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4FC89B1ECCEA2D006E2E07 /* PostViewController.swift */; };
 		6FBD0B3E1ECB82E900C0B1C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD0B3D1ECB82E900C0B1C2 /* AppDelegate.swift */; };
 		6FBD0B401ECB82E900C0B1C2 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD0B3F1ECB82E900C0B1C2 /* PostListViewController.swift */; };
 		6FBD0B431ECB82E900C0B1C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FBD0B411ECB82E900C0B1C2 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		6F0754711ECBB12300E0E054 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewControllerExtension.swift; path = Extensions/UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		6F0754741ECBB2CC00E0E054 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostTableViewCell.swift; path = View/PostTableViewCell.swift; sourceTree = "<group>"; };
 		6F19B03C1ECB96E800E6E200 /* PostsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostsService.swift; path = Model/PostsService.swift; sourceTree = "<group>"; };
+		6F4FC89B1ECCEA2D006E2E07 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = Controller/PostViewController.swift; sourceTree = "<group>"; };
 		6FBD0B3A1ECB82E900C0B1C2 /* ProductHunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductHunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FBD0B3D1ECB82E900C0B1C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FBD0B3F1ECB82E900C0B1C2 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,15 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		6F4FC89A1ECCE9F0006E2E07 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6FBD0B3F1ECB82E900C0B1C2 /* PostListViewController.swift */,
+				6F4FC89B1ECCEA2D006E2E07 /* PostViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		6FBD0B311ECB82E900C0B1C2 = {
 			isa = PBXGroup;
 			children = (
@@ -103,11 +114,11 @@
 		6FBD0B3C1ECB82E900C0B1C2 /* ProductHunt */ = {
 			isa = PBXGroup;
 			children = (
+				6F4FC89A1ECCE9F0006E2E07 /* Controller */,
 				6F0754731ECBB2A400E0E054 /* View */,
 				6FBD0B4F1ECB909500C0B1C2 /* Model */,
 				6F0754701ECBB10200E0E054 /* Extensions */,
 				6FBD0B3D1ECB82E900C0B1C2 /* AppDelegate.swift */,
-				6FBD0B3F1ECB82E900C0B1C2 /* PostListViewController.swift */,
 				6FBD0B441ECB82E900C0B1C2 /* Assets.xcassets */,
 				6FBD0B461ECB82E900C0B1C2 /* LaunchScreen.storyboard */,
 				6FBD0B491ECB82E900C0B1C2 /* Info.plist */,
@@ -250,6 +261,7 @@
 			files = (
 				6F19B03D1ECB96E800E6E200 /* PostsService.swift in Sources */,
 				6FBD0B401ECB82E900C0B1C2 /* PostListViewController.swift in Sources */,
+				6F4FC89D1ECCEA2D006E2E07 /* PostViewController.swift in Sources */,
 				6F0754721ECBB12300E0E054 /* UIViewControllerExtension.swift in Sources */,
 				6FBD0B3E1ECB82E900C0B1C2 /* AppDelegate.swift in Sources */,
 				6FBD0B531ECB90D200C0B1C2 /* Post.swift in Sources */,

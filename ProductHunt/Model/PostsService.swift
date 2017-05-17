@@ -16,7 +16,7 @@ class PostsService {
     let baseUrl = "https://api.producthunt.com/v1/"
     let accessToken = "591f99547f569b05ba7d8777e2e0824eea16c440292cce1f8dfb3952cc9937ff"
     
-    let selectedCategory: String! = "tech"
+    let selectedCategory: String = "tech"
     var currentPosts = [Post]()
     
     private init() {}
@@ -25,24 +25,26 @@ class PostsService {
         
     }
     
-    func loadPosts(with callback:@escaping ([Post]?) -> Void) {
-        Alamofire.request("\(baseUrl)categories/\(selectedCategory)/posts",
+    func loadPosts(with callback:@escaping (Bool) -> Void) {
+        let url = "\(baseUrl)categories/\(selectedCategory)/posts"
+        
+        Alamofire.request(url,
             method: .get,
             parameters: ["access_token" : accessToken]).responseJSON { response in
                 guard let data = response.data else {
-                    callback(nil)
+                    callback(false)
                     return
                 }
                 
                 if response.result.isFailure {
-                    callback(nil)
+                    callback(false)
                     return
                 }
                 
                 let json = JSON(data: data)
                 let posts = json["posts"].arrayValue.map({ Post(json: $0) })
                 self.currentPosts = posts
-                callback(posts)
+                callback(true)
         }
     }
 }

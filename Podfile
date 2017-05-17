@@ -6,9 +6,8 @@ target 'ProductHunt' do
   use_frameworks!
 
 	pod 'Alamofire', '~> 4.4'
-    	pod 'AlamofireImage', '~> 3.1'
+    pod 'AlamofireImage', '~> 3.1'
 	pod 'SwiftyJSON'
-
-  # Pods for ProductHunt
+    pod 'BTNavigationDropdownMenu', :git => 'https://github.com/PhamBaTho/BTNavigationDropdownMenu.git', :branch => 'swift-3.0'
 
 end

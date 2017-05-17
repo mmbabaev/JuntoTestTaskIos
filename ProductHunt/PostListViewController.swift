@@ -11,19 +11,47 @@ import AlamofireImage
 
 class PostListViewController: UITableViewController {
     
-    var posts: [Post] = []
-
+    var posts: [Post] {
+        return PostsService.shared.currentPosts
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        PostsService.shared.loadPosts() {
-            posts in
-            if let posts = posts {
-                self.posts = posts
-                self.tableView.reloadData()
-            } else {
-                self.showErrorAlert(with: "Не удалось загрузить данные")
-            }
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 44.0
+        self.tableView.separatorStyle = .singleLine
+        
+        self.addBackgroundLabel()
+        self.refreshControl = UIRefreshControl()
+        
+        self.refreshControl?.addTarget(self, action: #selector(reload), for: .valueChanged)
+        self.reload()
+    }
+    
+    func addBackgroundLabel() {
+        let bounds = self.view.bounds
+        let frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
+        let label = UILabel(frame: frame)
+        label.text = "В данной категории нет постов за сегодня"
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.sizeToFit()
+        
+        self.tableView.backgroundView = label
+    }
+    
+    func reload() {
+        PostsService.shared.loadPosts(with: updatePosts)
+    }
+    
+    func updatePosts(success: Bool) {
+        self.tableView.refreshControl?.endRefreshing()
+        if success {
+            self.tableView.reloadData()
+        } else {
+            self.showErrorAlert(with: "Не удалось загрузить данные")
         }
     }
     
@@ -31,16 +59,21 @@ class PostListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCellId") as! PostTableViewCell
         let post = posts[indexPath.row]
-        cell.descriptionLabel.text = post.description
-        cell.titleLabel.text = post.title
-        if let imageUrl = URL(string: post.thumbnailUrl) {
-            cell.thubnailView.af_setImage(withURL: imageUrl)
-        }
+        
+        cell.configure(with: post)
         
         return cell
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    }
+    
     // MARK: UITableViewDelegate 
-    func
+    
 }
 
