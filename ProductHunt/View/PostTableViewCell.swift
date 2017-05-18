@@ -21,7 +21,7 @@ class PostTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.thubnailView.image = nil
+        self.thubnailView.image = UIImage(named: "productHunt")
     }
     
     func configure(with post: Post) {
