@@ -54,6 +54,10 @@ class PostsProvider {
     }
     
     func loadPosts(with callback:@escaping (Bool) -> Void) {
+        if selectedCategory == nil {
+            return
+        }
+        
         let url = "\(baseUrl)categories/\(selectedCategory.slug)/posts"
         
         Alamofire.request(url,
@@ -68,6 +72,7 @@ class PostsProvider {
                 let posts = json["posts"].arrayValue.map({
                     Post(json: $0, category: self.selectedCategory)
                 })
+                
                 self.currentPosts = posts
                 
                 callback(true)

@@ -27,7 +27,7 @@ class PostViewController: UIViewController {
         getItButton.layer.cornerRadius = getItButton.frame.height / 2.0
 
         titleLabel.text = post.title
-        votesLabel.text = String("\(post.votesCount)")
+        votesLabel.text = String(post.votesCount)
         descriptionTextView.text = post.description
         
         descriptionTextView.allowsEditingTextAttributes = false

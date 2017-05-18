@@ -15,17 +15,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        UIApplication.shared.setMinimumBackgroundFetchInterval(30)
         NotificationService.shared.requestGrant()
                
         return true
+    }
+    
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        NotificationService.shared.stopObserving()
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         NotificationService.shared.startObserving()
     }
     
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        NotificationService.shared.stopObserving()
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        NotificationService.shared.fetchForNotifications(completion: completionHandler)
+        completionHandler(.noData)
     }
 }
 

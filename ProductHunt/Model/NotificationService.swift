@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications
+import CoreLocation
 
 class NotificationService {
     
@@ -39,15 +40,6 @@ class NotificationService {
         }
         
         oldPostIds = provider.currentPosts.map({ $0.id })
-        
-        backgroundTaskIdentifier = UIApplication.shared.beginBackgroundTask(expirationHandler: {
-            UIApplication.shared.endBackgroundTask(self.backgroundTaskIdentifier!)
-        })
-        self.timer = Timer.scheduledTimer(timeInterval: 60,
-                                          target: self,
-                                          selector: #selector(self.timerTick),
-                                          userInfo: nil,
-                                          repeats: true)
     }
     
     func stopObserving() {
@@ -55,8 +47,10 @@ class NotificationService {
         self.timer = nil
     }
     
-    @objc func timerTick() {
-        
+    func fetchForNotifications(completion: @escaping (UIBackgroundFetchResult) -> Void) {
+        print(Date())
+        print(provider.currentPosts.count)
+
         PostsProvider.shared.loadPosts() { success in
             if !success {
                 return
@@ -72,6 +66,12 @@ class NotificationService {
             
             if newPosts.count > 1 {
                 self.sendNotification(with: newPosts.count)
+            }
+            
+            if newPosts.count > 0 {
+                completion(.newData)
+            } else {
+                completion(.noData)
             }
         }
     }

@@ -85,6 +85,8 @@ class PostListViewController: UITableViewController {
             if !success || self.categories.isEmpty {
                 self.showErrorAlert(with: "An error occurred, please try again.", okHandler: tryAgainAction)
             } else {
+                self.backgroundLabel?.text = "Loading posts..."
+                self.backgroundLabel?.isHidden = false
                 self.loadPosts()
             }
         }

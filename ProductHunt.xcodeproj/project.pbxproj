@@ -11,17 +11,17 @@
 		6F0754721ECBB12300E0E054 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754711ECBB12300E0E054 /* UIViewControllerExtension.swift */; };
 		6F0754751ECBB2CC00E0E054 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754741ECBB2CC00E0E054 /* PostTableViewCell.swift */; };
 		6F19B03D1ECB96E800E6E200 /* PostsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19B03C1ECB96E800E6E200 /* PostsProvider.swift */; };
-		6F29B07B1ECDEA8500258299 /* WebPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F29B07A1ECDEA8500258299 /* WebPostViewController.swift */; };
-		6F4FC89D1ECCEA2D006E2E07 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4FC89B1ECCEA2D006E2E07 /* PostViewController.swift */; };
 		6F4FC8A21ECD014C006E2E07 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4FC8A11ECD014C006E2E07 /* Category.swift */; };
 		6F4FC8A41ECD118E006E2E07 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4FC8A31ECD118E006E2E07 /* UIColorExtension.swift */; };
 		6F70D2AC1ECDC04800134FB6 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F70D2AB1ECDC04800134FB6 /* NotificationService.swift */; };
+		6F8522401ECDF758002F9E11 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F85223F1ECDF758002F9E11 /* Post.swift */; };
+		6F8522471ECDF78C002F9E11 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8522441ECDF78C002F9E11 /* PostViewController.swift */; };
+		6F8522481ECDF78C002F9E11 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8522451ECDF78C002F9E11 /* PostListViewController.swift */; };
+		6F8522491ECDF78C002F9E11 /* WebPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8522461ECDF78C002F9E11 /* WebPostViewController.swift */; };
 		6FBD0B3E1ECB82E900C0B1C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD0B3D1ECB82E900C0B1C2 /* AppDelegate.swift */; };
-		6FBD0B401ECB82E900C0B1C2 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD0B3F1ECB82E900C0B1C2 /* PostListViewController.swift */; };
 		6FBD0B431ECB82E900C0B1C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FBD0B411ECB82E900C0B1C2 /* Main.storyboard */; };
 		6FBD0B451ECB82E900C0B1C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FBD0B441ECB82E900C0B1C2 /* Assets.xcassets */; };
 		6FBD0B481ECB82E900C0B1C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FBD0B461ECB82E900C0B1C2 /* LaunchScreen.storyboard */; };
-		6FBD0B531ECB90D200C0B1C2 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD0B521ECB90D200C0B1C2 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,19 +29,19 @@
 		6F0754711ECBB12300E0E054 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewControllerExtension.swift; path = Extensions/UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		6F0754741ECBB2CC00E0E054 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostTableViewCell.swift; path = View/PostTableViewCell.swift; sourceTree = "<group>"; };
 		6F19B03C1ECB96E800E6E200 /* PostsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostsProvider.swift; path = Model/PostsProvider.swift; sourceTree = "<group>"; };
-		6F29B07A1ECDEA8500258299 /* WebPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebPostViewController.swift; path = Controller/WebPostViewController.swift; sourceTree = "<group>"; };
-		6F4FC89B1ECCEA2D006E2E07 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = Controller/PostViewController.swift; sourceTree = "<group>"; };
 		6F4FC8A11ECD014C006E2E07 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Model/Category.swift; sourceTree = "<group>"; };
 		6F4FC8A31ECD118E006E2E07 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = Extensions/UIColorExtension.swift; sourceTree = "<group>"; };
 		6F70D2AB1ECDC04800134FB6 /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationService.swift; path = Model/NotificationService.swift; sourceTree = "<group>"; };
+		6F85223F1ECDF758002F9E11 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Post.swift; path = Model/Post.swift; sourceTree = "<group>"; };
+		6F8522441ECDF78C002F9E11 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = Controllers/PostViewController.swift; sourceTree = "<group>"; };
+		6F8522451ECDF78C002F9E11 /* PostListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostListViewController.swift; path = Controllers/PostListViewController.swift; sourceTree = "<group>"; };
+		6F8522461ECDF78C002F9E11 /* WebPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebPostViewController.swift; path = Controllers/WebPostViewController.swift; sourceTree = "<group>"; };
+		6F85224A1ECDF7C6002F9E11 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FBD0B3A1ECB82E900C0B1C2 /* ProductHunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductHunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FBD0B3D1ECB82E900C0B1C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6FBD0B3F1ECB82E900C0B1C2 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
 		6FBD0B421ECB82E900C0B1C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6FBD0B441ECB82E900C0B1C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6FBD0B471ECB82E900C0B1C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		6FBD0B491ECB82E900C0B1C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6FBD0B521ECB90D200C0B1C2 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		C445ABF46F6A285983CA57E6 /* Pods-ProductHunt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProductHunt.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProductHunt/Pods-ProductHunt.release.xcconfig"; sourceTree = "<group>"; };
 		F9885B09E7C292B712E32935 /* Pods-ProductHunt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProductHunt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProductHunt/Pods-ProductHunt.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,20 +93,20 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		6F4FC89A1ECCE9F0006E2E07 /* Controller */ = {
+		6F4FC89A1ECCE9F0006E2E07 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6FBD0B3F1ECB82E900C0B1C2 /* PostListViewController.swift */,
-				6F4FC89B1ECCEA2D006E2E07 /* PostViewController.swift */,
-				6F29B07A1ECDEA8500258299 /* WebPostViewController.swift */,
+				6F8522451ECDF78C002F9E11 /* PostListViewController.swift */,
+				6F8522441ECDF78C002F9E11 /* PostViewController.swift */,
+				6F8522461ECDF78C002F9E11 /* WebPostViewController.swift */,
 			);
-			name = Controller;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		6F70D2AD1ECDC39100134FB6 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				6FBD0B521ECB90D200C0B1C2 /* Post.swift */,
+				6F85223F1ECDF758002F9E11 /* Post.swift */,
 				6F4FC8A11ECD014C006E2E07 /* Category.swift */,
 			);
 			name = Entities;
@@ -133,14 +133,14 @@
 		6FBD0B3C1ECB82E900C0B1C2 /* ProductHunt */ = {
 			isa = PBXGroup;
 			children = (
-				6F4FC89A1ECCE9F0006E2E07 /* Controller */,
+				6F4FC89A1ECCE9F0006E2E07 /* Controllers */,
 				6F0754731ECBB2A400E0E054 /* View */,
 				6FBD0B4F1ECB909500C0B1C2 /* Model */,
 				6F0754701ECBB10200E0E054 /* Extensions */,
 				6FBD0B3D1ECB82E900C0B1C2 /* AppDelegate.swift */,
 				6FBD0B441ECB82E900C0B1C2 /* Assets.xcassets */,
 				6FBD0B461ECB82E900C0B1C2 /* LaunchScreen.storyboard */,
-				6FBD0B491ECB82E900C0B1C2 /* Info.plist */,
+				6F85224A1ECDF7C6002F9E11 /* Info.plist */,
 			);
 			path = ProductHunt;
 			sourceTree = "<group>";
@@ -279,15 +279,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F8522471ECDF78C002F9E11 /* PostViewController.swift in Sources */,
 				6F19B03D1ECB96E800E6E200 /* PostsProvider.swift in Sources */,
-				6FBD0B401ECB82E900C0B1C2 /* PostListViewController.swift in Sources */,
+				6F8522401ECDF758002F9E11 /* Post.swift in Sources */,
 				6F70D2AC1ECDC04800134FB6 /* NotificationService.swift in Sources */,
-				6F4FC89D1ECCEA2D006E2E07 /* PostViewController.swift in Sources */,
 				6F4FC8A21ECD014C006E2E07 /* Category.swift in Sources */,
 				6F0754721ECBB12300E0E054 /* UIViewControllerExtension.swift in Sources */,
+				6F8522481ECDF78C002F9E11 /* PostListViewController.swift in Sources */,
 				6FBD0B3E1ECB82E900C0B1C2 /* AppDelegate.swift in Sources */,
-				6FBD0B531ECB90D200C0B1C2 /* Post.swift in Sources */,
-				6F29B07B1ECDEA8500258299 /* WebPostViewController.swift in Sources */,
+				6F8522491ECDF78C002F9E11 /* WebPostViewController.swift in Sources */,
 				6F4FC8A41ECD118E006E2E07 /* UIColorExtension.swift in Sources */,
 				6F0754751ECBB2CC00E0E054 /* PostTableViewCell.swift in Sources */,
 			);
