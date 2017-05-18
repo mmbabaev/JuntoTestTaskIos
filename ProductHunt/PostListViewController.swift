@@ -14,21 +14,27 @@ import MBProgressHUD
 class PostListViewController: UITableViewController {
     
     var posts: [Post] {
-        return PostsService.shared.currentPosts
+        return PostsProvider.shared.currentPosts
     }
     var categories: [String] {
-        return PostsService.shared.categories.map({ $0.name })
+        return PostsProvider.shared.categories.map({ $0.name })
     }
     var menu: BTNavigationDropdownMenu!
-    weak var selectedMenuLabel: UILabel!
+    
+    // MARK: - Setup controller
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationController?.navigationBar.isTranslucent = false
         
+        self.setupNavigationItem()
+        self.setupTableView()
+        
+        loadCategories()
+    }
+    
+    func setupTableView() {
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 44.0
+        self.tableView.estimatedRowHeight = 40.0
         
         self.tableView.separatorStyle = .none
         
@@ -37,21 +43,21 @@ class PostListViewController: UITableViewController {
         
         self.refreshControl?.addTarget(self, action: #selector(loadPosts), for: .valueChanged)
         
-        loadCategories()
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
-    func loadCategories() {
-        let tryAgainAction: ((UIAlertAction) -> Void) = { action in self.loadCategories() }
-
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        PostsService.shared.updateCategories() { success in
-            MBProgressHUD.hide(for: self.view, animated: true)
-            if !success || self.categories.isEmpty {
-                self.showErrorAlert(with: "An error occurred, please try again.", okHandler: tryAgainAction)
-            } else {
-                self.loadPosts()
-            }
-        }
+    func setupNavigationItem() {
+        self.navigationItem.title = "Tech"
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        
+        self.menu = BTNavigationDropdownMenu(title: "Tech", items: self.categories as [AnyObject])
+        
+        menu.shouldKeepSelectedCellColor = true
+        menu.cellTextLabelColor = UIColor.white
+        menu.cellTextLabelAlignment = .center
+        menu.maskBackgroundColor = UIColor.black
+        self.navigationItem.titleView = menu
     }
     
     func addBackgroundLabel() {
@@ -62,12 +68,30 @@ class PostListViewController: UITableViewController {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.sizeToFit()
+        label.isHidden = true
         
         self.tableView.backgroundView = label
     }
     
+    // MARK: - Load operations
+    
+    func loadCategories() {
+        let tryAgainAction: ((UIAlertAction) -> Void) = { action in self.loadCategories() }
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        PostsProvider.shared.updateCategories() { success in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if !success || self.categories.isEmpty {
+                self.showErrorAlert(with: "An error occurred, please try again.", okHandler: tryAgainAction)
+            } else {
+                self.loadPosts()
+            }
+        }
+    }
+    
     func loadPosts() {
-        PostsService.shared.loadPosts(with: updatePosts)
+        self.tableView.backgroundView?.isHidden = true
+        PostsProvider.shared.loadPosts(with: updatePosts)
     }
     
     func updatePosts(success: Bool) {
@@ -82,16 +106,28 @@ class PostListViewController: UITableViewController {
     func reload() {
         self.reloadDropdownCategories()
         self.tableView.reloadData()
-        self.tableView.separatorStyle = posts.count == 0 ? .none : .singleLine
+        
+        if posts.count == 0 {
+            self.tableView.separatorStyle = .none
+            self.tableView.backgroundView?.isHidden = false
+        } else {
+            self.tableView.separatorStyle = .singleLine
+            self.tableView.backgroundView?.isHidden = true
+        }
     }
     
     func reloadDropdownCategories() {
-        let category = PostsService.shared.selectedCategory.name
-        self.menu = BTNavigationDropdownMenu(title: category, items: self.categories as [AnyObject])
-        self.navigationItem.titleView = menu
+        let category = PostsProvider.shared.selectedCategory!
+        self.menu.updateItems(self.categories as [AnyObject])
+        
+        let color = UIColor(hex: category.colorCode)
+        menu.cellBackgroundColor = color
+        
+        self.navigationItem.title = category.name
+        self.navigationController?.navigationBar.barTintColor = color
         
         menu.didSelectItemAtIndexHandler = { index in
-            PostsService.shared.selectCategory(at: index)
+            PostsProvider.shared.selectCategory(at: index)
             self.reload()
             self.loadPosts()
             self.reloadDropdownCategories()

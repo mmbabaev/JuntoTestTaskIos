@@ -1,5 +1,5 @@
 //
-//  PostsService.swift
+//  PostsProvider.swift
 //  ProductHunt
 //
 //  Created by Mihail Babaev on 16.05.17.
@@ -10,15 +10,15 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class PostsService {
-    static let shared = PostsService()
+class PostsProvider {
+    open static let shared = PostsProvider()
     
     var selectedCategory: Category!
     var currentPosts = [Post]()
-    
-    private let categoriesKey = "UDCategories"
     var categories = [Category]()
     
+    private let categoriesKey = "UDCategories"
+
     private init() {}
     private let baseUrl = "https://api.producthunt.com/v1/"
     private let tokenParamDict = ["access_token" : "591f99547f569b05ba7d8777e2e0824eea16c440292cce1f8dfb3952cc9937ff"]
@@ -44,6 +44,7 @@ class PostsService {
                                     slug: jsonCategory["slug"].stringValue,
                                     colorCode: jsonCategory["color"].stringValue)
                 })
+                
                 if !self.categories.isEmpty {
                     self.selectedCategory = self.categories[0]
                 }
@@ -66,6 +67,7 @@ class PostsService {
                 let json = JSON(data: data)
                 let posts = json["posts"].arrayValue.map({ Post(json: $0) })
                 self.currentPosts = posts
+                
                 callback(true)
         }
     }

@@ -19,6 +19,8 @@ class PostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
 
         titleLabel.text = post.title
         votesLabel.text = String("\(post.votesCount)")
@@ -30,6 +32,5 @@ class PostViewController: UIViewController {
             print(imageUrl)
             imageView.af_setImage(withURL: imageUrl)
         }
-    
     }
 }
