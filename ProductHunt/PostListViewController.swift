@@ -20,6 +20,7 @@ class PostListViewController: UITableViewController {
         return PostsProvider.shared.categories.map({ $0.name })
     }
     var menu: BTNavigationDropdownMenu!
+    var backgroundLabel: UILabel?
     
     // MARK: - Setup controller
     
@@ -64,11 +65,11 @@ class PostListViewController: UITableViewController {
         let bounds = self.view.bounds
         let frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height / 4)
         let label = UILabel(frame: frame)
-        label.text = "No any posts today in selected category."
         label.numberOfLines = 0
         label.textAlignment = .center
         label.sizeToFit()
         label.isHidden = true
+        self.backgroundLabel = label
         
         self.tableView.backgroundView = label
     }
@@ -90,7 +91,7 @@ class PostListViewController: UITableViewController {
     }
     
     func loadPosts() {
-        self.tableView.backgroundView?.isHidden = true
+        self.backgroundLabel?.text = "Loading posts..."
         PostsProvider.shared.loadPosts(with: updatePosts)
     }
     
@@ -114,6 +115,7 @@ class PostListViewController: UITableViewController {
             self.tableView.separatorStyle = .singleLine
             self.tableView.backgroundView?.isHidden = true
         }
+        self.backgroundLabel?.text = "No any posts today in selected category."
     }
     
     func reloadDropdownCategories() {

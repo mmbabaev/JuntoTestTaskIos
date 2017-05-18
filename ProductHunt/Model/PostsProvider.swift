@@ -65,8 +65,13 @@ class PostsProvider {
                 }
             
                 let json = JSON(data: data)
-                let posts = json["posts"].arrayValue.map({ Post(json: $0) })
+                let posts = json["posts"].arrayValue.map({
+                    Post(json: $0, category: self.selectedCategory)
+                })
                 self.currentPosts = posts
+                
+                let currentIds = posts.map({ $0.id })
+                print("ids: \(currentIds)")
                 
                 callback(true)
         }

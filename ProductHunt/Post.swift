@@ -20,7 +20,9 @@ struct Post {
     
     let redirectUrl: String
     
-    init(json: JSON) {
+    let category: Category
+    
+    init(json: JSON, category: Category) {
         id = json["id"].intValue
         title = json["name"].stringValue
         thumbnailUrl = json["thumbnail"]["image_url"].stringValue
@@ -28,5 +30,7 @@ struct Post {
         votesCount = json["votes_count"].intValue
         screenshotUrl = json["screenshot_url"]["850px"].stringValue
         description = json["tagline"].stringValue
+        
+        self.category = category
     }
 }

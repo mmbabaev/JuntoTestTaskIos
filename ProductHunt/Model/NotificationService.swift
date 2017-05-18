@@ -39,11 +39,12 @@ class NotificationService {
         }
         
         oldPostIds = provider.currentPosts.map({ $0.id })
+        print("Old ids: \(oldPostIds)")
         
         backgroundTaskIdentifier = UIApplication.shared.beginBackgroundTask(expirationHandler: {
             UIApplication.shared.endBackgroundTask(self.backgroundTaskIdentifier!)
         })
-        self.timer = Timer.scheduledTimer(timeInterval: 60,
+        self.timer = Timer.scheduledTimer(timeInterval: 3,
                                           target: self,
                                           selector: #selector(self.timerTick),
                                           userInfo: nil,
