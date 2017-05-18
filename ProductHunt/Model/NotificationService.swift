@@ -39,12 +39,11 @@ class NotificationService {
         }
         
         oldPostIds = provider.currentPosts.map({ $0.id })
-        print("Old ids: \(oldPostIds)")
         
         backgroundTaskIdentifier = UIApplication.shared.beginBackgroundTask(expirationHandler: {
             UIApplication.shared.endBackgroundTask(self.backgroundTaskIdentifier!)
         })
-        self.timer = Timer.scheduledTimer(timeInterval: 3,
+        self.timer = Timer.scheduledTimer(timeInterval: 60,
                                           target: self,
                                           selector: #selector(self.timerTick),
                                           userInfo: nil,
@@ -62,13 +61,6 @@ class NotificationService {
             if !success {
                 return
             }
-            
-            let content = UNMutableNotificationContent()
-            content.title = "Late wake up call"
-            content.body = "The early bird catches the worm, but the second mouse gets the cheese."
-            content.categoryIdentifier = "alarm"
-            content.userInfo = ["customData": "fizzbuzz"]
-            content.sound = UNNotificationSound.default()
             
             let newPosts = self.provider.currentPosts.filter({
                 !self.oldPostIds.contains($0.id)

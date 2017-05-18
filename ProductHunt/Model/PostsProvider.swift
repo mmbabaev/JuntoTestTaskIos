@@ -70,9 +70,6 @@ class PostsProvider {
                 })
                 self.currentPosts = posts
                 
-                let currentIds = posts.map({ $0.id })
-                print("ids: \(currentIds)")
-                
                 callback(true)
         }
     }

@@ -33,7 +33,6 @@ class PostViewController: UIViewController {
         descriptionTextView.allowsEditingTextAttributes = false
         
         if let imageUrl = URL(string: post.screenshotUrl) {
-            print(imageUrl)
             imageView.af_setImage(withURL: imageUrl)
         }
     }
