@@ -8,33 +8,57 @@
 
 import UIKit
 import AlamofireImage
+import BTNavigationDropdownMenu
+import MBProgressHUD
 
 class PostListViewController: UITableViewController {
     
     var posts: [Post] {
         return PostsService.shared.currentPosts
     }
-    
+    var categories: [String] {
+        return PostsService.shared.categories.map({ $0.name })
+    }
+    var menu: BTNavigationDropdownMenu!
+    weak var selectedMenuLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.navigationController?.navigationBar.isTranslucent = false
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
-        self.tableView.separatorStyle = .singleLine
+        
+        self.tableView.separatorStyle = .none
         
         self.addBackgroundLabel()
         self.refreshControl = UIRefreshControl()
         
-        self.refreshControl?.addTarget(self, action: #selector(reload), for: .valueChanged)
-        self.reload()
+        self.refreshControl?.addTarget(self, action: #selector(loadPosts), for: .valueChanged)
+        
+        loadCategories()
+    }
+    
+    func loadCategories() {
+        let tryAgainAction: ((UIAlertAction) -> Void) = { action in self.loadCategories() }
+
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        PostsService.shared.updateCategories() { success in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if !success || self.categories.isEmpty {
+                self.showErrorAlert(with: "An error occurred, please try again.", okHandler: tryAgainAction)
+            } else {
+                self.loadPosts()
+            }
+        }
     }
     
     func addBackgroundLabel() {
         let bounds = self.view.bounds
-        let frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
+        let frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height / 4)
         let label = UILabel(frame: frame)
-        label.text = "В данной категории нет постов за сегодня"
+        label.text = "No any posts today in selected category."
         label.numberOfLines = 0
         label.textAlignment = .center
         label.sizeToFit()
@@ -42,20 +66,40 @@ class PostListViewController: UITableViewController {
         self.tableView.backgroundView = label
     }
     
-    func reload() {
+    func loadPosts() {
         PostsService.shared.loadPosts(with: updatePosts)
     }
     
     func updatePosts(success: Bool) {
         self.tableView.refreshControl?.endRefreshing()
         if success {
-            self.tableView.reloadData()
+            self.reload()
         } else {
-            self.showErrorAlert(with: "Не удалось загрузить данные")
+            self.showErrorAlert(with: "An error occurred, please try again.")
         }
     }
     
-    // MARK: Table view datasource
+    func reload() {
+        self.reloadDropdownCategories()
+        self.tableView.reloadData()
+        self.tableView.separatorStyle = posts.count == 0 ? .none : .singleLine
+    }
+    
+    func reloadDropdownCategories() {
+        let category = PostsService.shared.selectedCategory.name
+        self.menu = BTNavigationDropdownMenu(title: category, items: self.categories as [AnyObject])
+        self.navigationItem.titleView = menu
+        
+        menu.didSelectItemAtIndexHandler = { index in
+            PostsService.shared.selectCategory(at: index)
+            self.reload()
+            self.loadPosts()
+            self.reloadDropdownCategories()
+        }
+    }
+    
+    // MARK: - UITableViewDatasource
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCellId") as! PostTableViewCell
         let post = posts[indexPath.row]
@@ -73,7 +117,13 @@ class PostListViewController: UITableViewController {
         return posts.count
     }
     
-    // MARK: UITableViewDelegate 
-    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showPost" {
+            let postVC = segue.destination as! PostViewController
+            let index = self.tableView.indexPathForSelectedRow!.row
+            postVC.post = posts[index]
+        }
+    }
 }
 

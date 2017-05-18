@@ -12,8 +12,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var thubnailView: UIImageView!
-    
-    
+    @IBOutlet weak var votesLabel: UILabel!
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -29,6 +28,7 @@ class PostTableViewCell: UITableViewCell {
         if let imageUrl = URL(string: post.thumbnailUrl) {
             self.thubnailView.af_setImage(withURL: imageUrl)
         }
+        votesLabel.text = String(post.votesCount)
     }
 
 }

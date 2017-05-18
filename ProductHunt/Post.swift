@@ -13,9 +13,9 @@ struct Post {
     let title: String
     let description: String
     let votesCount: Int
-    let thumbnailUrl: String
     
-    let imageUrl: String
+    let thumbnailUrl: String
+    let screenshotUrl: String
     
     let redirectUrl: String
     
@@ -24,7 +24,7 @@ struct Post {
         thumbnailUrl = json["thumbnail"]["image_url"].stringValue
         redirectUrl = json["redirect_url"].stringValue
         votesCount = json["votes_count"].intValue
-        imageUrl = json["image_url"]["original"].stringValue
+        screenshotUrl = json["screenshot_url"]["850px"].stringValue
         description = json["tagline"].stringValue
     }
 }

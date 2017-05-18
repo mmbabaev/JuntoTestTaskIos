@@ -9,5 +9,5 @@ target 'ProductHunt' do
     pod 'AlamofireImage', '~> 3.1'
 	pod 'SwiftyJSON'
     pod 'BTNavigationDropdownMenu', :git => 'https://github.com/PhamBaTho/BTNavigationDropdownMenu.git', :branch => 'swift-3.0'
-
+    pod 'MBProgressHUD'
 end

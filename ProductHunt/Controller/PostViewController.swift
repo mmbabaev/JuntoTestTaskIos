@@ -10,26 +10,26 @@ import UIKit
 
 class PostViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var votesLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    
+    var post: Post!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+        titleLabel.text = post.title
+        votesLabel.text = String("\(post.votesCount)")
+        descriptionTextView.text = post.description
+        
+        descriptionTextView.allowsEditingTextAttributes = false
+        
+        if let imageUrl = URL(string: post.screenshotUrl) {
+            print(imageUrl)
+            imageView.af_setImage(withURL: imageUrl)
+        }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
-
 }

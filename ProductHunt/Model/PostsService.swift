@@ -13,34 +13,56 @@ import SwiftyJSON
 class PostsService {
     static let shared = PostsService()
     
-    let baseUrl = "https://api.producthunt.com/v1/"
-    let accessToken = "591f99547f569b05ba7d8777e2e0824eea16c440292cce1f8dfb3952cc9937ff"
-    
-    let selectedCategory: String = "tech"
+    var selectedCategory: Category!
     var currentPosts = [Post]()
     
-    private init() {}
+    private let categoriesKey = "UDCategories"
+    var categories = [Category]()
     
-    func updateCategories(with callback: ([String]?) -> Void) {
-        
+    private init() {}
+    private let baseUrl = "https://api.producthunt.com/v1/"
+    private let tokenParamDict = ["access_token" : "591f99547f569b05ba7d8777e2e0824eea16c440292cce1f8dfb3952cc9937ff"]
+    
+    func selectCategory(at index: Int) {
+        selectedCategory = categories[index]
+        currentPosts = []
+    }
+    
+    func updateCategories(with callback: @escaping (Bool) -> Void) {
+        let url = "\(baseUrl)categories"
+        Alamofire.request(url,
+            method: .get,
+            parameters: tokenParamDict).responseJSON { response in
+                guard let data = response.data, response.result.isSuccess else {
+                    callback(false)
+                    return
+                }
+                
+                let json = JSON(data: data)
+                self.categories = json["categories"].arrayValue.map({ jsonCategory in
+                    return Category(name: jsonCategory["name"].stringValue,
+                                    slug: jsonCategory["slug"].stringValue,
+                                    colorCode: jsonCategory["color"].stringValue)
+                })
+                if !self.categories.isEmpty {
+                    self.selectedCategory = self.categories[0]
+                }
+                
+                callback(true)
+        }
     }
     
     func loadPosts(with callback:@escaping (Bool) -> Void) {
-        let url = "\(baseUrl)categories/\(selectedCategory)/posts"
+        let url = "\(baseUrl)categories/\(selectedCategory.slug)/posts"
         
         Alamofire.request(url,
             method: .get,
-            parameters: ["access_token" : accessToken]).responseJSON { response in
-                guard let data = response.data else {
+            parameters: tokenParamDict).responseJSON { response in
+                guard let data = response.data, response.result.isSuccess else {
                     callback(false)
                     return
                 }
-                
-                if response.result.isFailure {
-                    callback(false)
-                    return
-                }
-                
+            
                 let json = JSON(data: data)
                 let posts = json["posts"].arrayValue.map({ Post(json: $0) })
                 self.currentPosts = posts
