@@ -1,14 +1,5 @@
-## generic files to ignore
-*~
-*.lock
-*.DS_Store
-*.swp
-*.out
-
-*.iws
-workspace.xml
-tasks.xml
-.idea/
-.idea
-Pods
 Pods/
+Podfile.lock
+Alcora.xcworkspace/xcuserdata
+Alcora.xcodeproj/project.xcworkspace/xcuserdata/
+Alcora.xcodeproj/xcuserdata
